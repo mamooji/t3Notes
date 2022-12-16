@@ -1,0 +1,76 @@
+OLD MODEL
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  notes         Note[]
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  title     String
+  body      String
+  users     User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+OLD CALLS
+
+
+  findNotesByUserId: protectedProcedure.query(async ({ ctx }) => {
+    return await ctx.prisma.note.findMany({
+      where: {
+        users: {
+          some: { id: ctx.session.user.id },
+        },
+      },
+    })
+  }),
+  saveNote: protectedProcedure
+    .input(z.object({ title: z.string().optional() }).nullish())
+    .mutation(async ({ ctx, input }) => {
+      let title: string | undefined = input?.title
+      let user = ctx.session.user
+      if (!user) {
+        throw new TRPCError({
+          code: 'UNAUTHORIZED',
+          message: 'Could not find user',
+        })
+      }
+      if (!title) {
+        title = 'Defaulter'
+      }
+      const note = await ctx.prisma.note.create({
+        data: {
+          title: title,
+          body: 'TESTING MANY TO MANY',
+          users: {
+            connect: [{ id: ctx.session.user.id }],
+          },
+        },
+      })
+      return note
+    }),
+})
+
+
+
+  const postNote = trpc.useMutation(["note.saveNote"], {
+    onMutate: () => {
+      ctx.cancelQuery(["note.getNotes"]);
+
+      let optimisticUpdate = ctx.getQueryData(["note.getNotes"]);
+      if (optimisticUpdate) {
+        ctx.setQueryData(["note.getNotes"], optimisticUpdate);
+      }
+    },
+    onSettled: () => {
+      ctx.invalidateQueries(["note.getNotes"]);
+    },
+  });
