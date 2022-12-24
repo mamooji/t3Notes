@@ -97,28 +97,26 @@ const CreateNote: React.FC = () => {
   return (
     <div className="px-6 lg:px-8">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className=" flex flex-col gap-2  rounded-lg border-2 border-black p-4 ">
-          <div>
-            <input
-              className="w-full outline-none"
-              type="text"
-              placeholder="Note Title*"
-              disabled={isSubmitting}
-              {...register('title')}
-            />
-            {errors.title && (
-              <p className=" text-red-400">{errors.title.message}</p>
-            )}
-          </div>
-          <div>
-            <textarea
-              className=" h-60 w-full outline-none "
-              placeholder="Note Body"
-              disabled={isSubmitting}
-              {...register('body')}
-            />
-          </div>
-
+        <div className=" flex flex-col  rounded-3xl bg-blue-400 p-4 ">
+          <input
+            className=" h-12 w-full bg-blue-400 text-4xl font-extrabold text-white placeholder-white outline-none placeholder:text-4xl placeholder:font-extrabold"
+            type="text"
+            placeholder="Note Title*"
+            disabled={isSubmitting}
+            {...register('title')}
+          />
+          {errors.title && (
+            <p className=" font-extrabold text-red-400">
+              {errors.title.message}
+            </p>
+          )}
+          <textarea
+            // className=" h-60 w-full bg-blue-400 outline-none "
+            className=" h-60 w-full bg-blue-400 text-4xl font-extrabold text-white placeholder-white outline-none placeholder:text-4xl placeholder:font-extrabold"
+            placeholder="Note Body"
+            disabled={isSubmitting}
+            {...register('body')}
+          />
           <button
             type="submit"
             disabled={isSubmitting}
@@ -128,7 +126,7 @@ const CreateNote: React.FC = () => {
           </button>
         </div>
       </form>
-      <div className=" flex flex-wrap justify-center gap-4 pt-4">
+      <div className="my-4 grid grid-cols-1 gap-7 rounded-3xl bg-blue-200 p-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
         {notes.data &&
           notes.data.map((note) => {
             const { id, body, title } = note
