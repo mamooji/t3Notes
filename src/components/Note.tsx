@@ -21,7 +21,7 @@ const Note: React.FC<Props> = ({
       className="mx-auto flex h-80 max-h-56 w-full  transform flex-col justify-between rounded-3xl  bg-blue-400 text-white duration-500 ease-in-out hover:scale-110"
     >
       <div className="flex h-full flex-col p-4">
-        <div className="flex w-full justify-between gap-2">
+        <div className="flex w-full justify-between gap-2 ">
           <h1 className="text-4xl font-extrabold ">{title}</h1>
           <button
             className=" h-10 w-10 flex-shrink-0 rounded-full bg-red-400 pb-1 text-2xl font-extrabold hover:bg-red-500  "
@@ -31,11 +31,12 @@ const Note: React.FC<Props> = ({
           </button>
         </div>
 
-        <pre className=" w-full flex-auto overflow-x-auto overflow-y-auto break-words  ">
+        <pre className=" w-full flex-auto overflow-hidden  break-words  ">
+          {/* overflow-x-auto overflow-y-auto */}
           {body}
         </pre>
         <button
-          className="m-auto  rounded-3xl bg-blue-400 py-2 px-8 "
+          className="m-auto  rounded-3xl bg-blue-500 py-2 px-8 hover:bg-blue-600 "
           onClick={() => handleUpdate(id)}
         >
           Update

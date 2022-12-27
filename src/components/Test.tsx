@@ -16,9 +16,7 @@ const Test: React.FC = () => {
     resolver: zodResolver(createNoteSchema),
   })
 
-  const onSubmit: SubmitHandler<CreateNoteInput> = (values) => {
-    console.log(values)
-  }
+  const onSubmit: SubmitHandler<CreateNoteInput> = (values) => {}
 
   return (
     <div className="flex pt-4">

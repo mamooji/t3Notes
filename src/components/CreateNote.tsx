@@ -95,9 +95,9 @@ const CreateNote: React.FC = () => {
     })
   }
   return (
-    <div className="px-6 lg:px-8">
+    <div className=" px-6 lg:px-8">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className=" flex flex-col  rounded-3xl bg-blue-400 p-4 ">
+        <div className="flex flex-col rounded-3xl bg-blue-400 p-4 ">
           <input
             className=" h-12 w-full bg-blue-400 text-4xl font-extrabold text-white placeholder-white outline-none placeholder:text-4xl placeholder:font-extrabold"
             type="text"
@@ -110,8 +110,8 @@ const CreateNote: React.FC = () => {
               {errors.title.message}
             </p>
           )}
+
           <textarea
-            // className=" h-60 w-full bg-blue-400 outline-none "
             className=" h-60 w-full bg-blue-400 text-4xl font-extrabold text-white placeholder-white outline-none placeholder:text-4xl placeholder:font-extrabold"
             placeholder="Note Body"
             disabled={isSubmitting}
@@ -126,11 +126,11 @@ const CreateNote: React.FC = () => {
           </button>
         </div>
       </form>
-      <div className="my-4 grid grid-cols-1 gap-7 rounded-3xl bg-blue-200 p-8 pt-8 sm:grid-cols-2 lg:grid-cols-3">
-        {notes.data &&
-          notes.data.map((note) => {
+
+      {notes.data && (
+        <div className="my-4 grid grid-cols-1 gap-4 rounded-3xl bg-blue-200 p-4  sm:grid-cols-2 lg:grid-cols-3">
+          {notes.data.map((note) => {
             const { id, body, title } = note
-            console.log(body)
             return (
               <Note
                 body={body}
@@ -142,7 +142,8 @@ const CreateNote: React.FC = () => {
               />
             )
           })}
-      </div>
+        </div>
+      )}
     </div>
   )
 }
