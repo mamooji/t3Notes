@@ -36,7 +36,7 @@ const HeaderV2 = () => {
               ></Image>
             </Link>
           </div>
-          <div className="sm:hidden">
+          <div className="mr-4 sm:hidden ">
             <button
               type="button"
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
@@ -50,7 +50,7 @@ const HeaderV2 = () => {
         <div
           className={`${
             mobileMenuOpen ? ' ' : 'hidden sm:flex'
-          } flex flex-col gap-4 sm:mr-12  sm:flex-row  `}
+          } flex flex-col gap-4 sm:mr-8  sm:flex-row  `}
         >
           {navigation.map((item) => {
             return (

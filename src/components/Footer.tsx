@@ -22,7 +22,7 @@ const Footer = () => {
     <footer className=" bottom-0 w-full px-6 pb-4 text-white lg:px-8">
       <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full bg-blue-200 p-4 lg:px-8">
         <div className="flex">
-          <p className="text-center text-2xl font-extrabold">
+          <p className="text-center text-sm font-extrabold">
             &copy; 2022 Muhammad Mamooji, Inc. All rights reserved.
           </p>
         </div>
