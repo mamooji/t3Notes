@@ -2,7 +2,6 @@ import Head from 'next/head'
 import React, { Fragment } from 'react'
 import Footer from './Footer'
 import Header from './Header'
-import HeaderV2 from './HeaderV2'
 
 interface Props {
   children: React.ReactNode
@@ -16,7 +15,7 @@ const Layout: React.FC<Props> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex h-full min-h-screen flex-col">
-        <HeaderV2 />
+        <Header />
         <main className=" mx-auto w-full flex-1 sm:max-w-7xl ">{children}</main>
         <Footer />
       </div>

@@ -2,7 +2,7 @@ import { type NextPage } from 'next'
 import Head from 'next/head'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import { trpc } from '../utils/trpc'
-import Note from '../components/Note'
+import Note from './Notes/NoteComp'
 import Header from '../components/Header'
 
 const Home: NextPage = () => {

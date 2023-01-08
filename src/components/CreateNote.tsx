@@ -1,32 +1,12 @@
 import React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { CreateNoteInput, createNoteSchema } from '../schema/note.schema'
 import { trpc } from '../utils/trpc'
-import Note from './Note'
+import NotesComp from './Notes/NotesComp'
 
 const CreateNote: React.FC = () => {
   const utils = trpc.useContext()
-  const notes = trpc.note.findNotesByUserId.useQuery()
-  const deleteNote = trpc.note.deleteNote.useMutation({
-    // async onMutate(notes)
-    onMutate: async () => {
-      // Cancel outgoing fetches (so they don't overwrite our optimistic update)
-      await utils.note.findNotesByUserId.cancel()
-      // Get the data from the queryCache
-      const prevData = utils.note.findNotesByUserId.getData()
-
-      // Optimistically update the data with our new post
-      if (prevData) {
-        utils.note.findNotesByUserId.setData(prevData)
-      }
-    },
-    onSettled() {
-      // Sync with server once mutation has settled
-      utils.note.findNotesByUserId.invalidate()
-    },
-  })
   const createNote = trpc.note.saveNote.useMutation({
     // async onMutate(notes)
     onMutate: async () => {
@@ -46,24 +26,6 @@ const CreateNote: React.FC = () => {
     },
   })
 
-  const updateNote = trpc.note.updateNoteById.useMutation({
-    // async onMutate(notes)
-    onMutate: async () => {
-      // Cancel outgoing fetches (so they don't overwrite our optimistic update)
-      await utils.note.findNotesByUserId.cancel()
-      // Get the data from the queryCache
-      const prevData = utils.note.findNotesByUserId.getData()
-
-      // Optimistically update the data with our new post
-      if (prevData) {
-        utils.note.findNotesByUserId.setData(prevData)
-      }
-    },
-    onSettled() {
-      // Sync with server once mutation has settled
-      utils.note.findNotesByUserId.invalidate()
-    },
-  })
   const {
     handleSubmit,
     register,
@@ -83,16 +45,6 @@ const CreateNote: React.FC = () => {
       body: values.body,
     })
     reset()
-  }
-
-  const handleDelete = async (id: string) => {
-    deleteNote.mutate({ id })
-  }
-  const handleUpdate = async (id: string) => {
-    updateNote.mutate({
-      noteId: id,
-      title: 'L',
-    })
   }
   return (
     <div className=" px-6 lg:px-8">
@@ -126,24 +78,7 @@ const CreateNote: React.FC = () => {
           </button>
         </div>
       </form>
-
-      {notes.data && (
-        <div className="my-4 grid grid-cols-1 gap-4 rounded-3xl bg-blue-200 p-4  sm:grid-cols-2 lg:grid-cols-3">
-          {notes.data.map((note) => {
-            const { id, body, title } = note
-            return (
-              <Note
-                body={body}
-                handleDelete={handleDelete}
-                id={id}
-                title={title}
-                key={id}
-                handleUpdate={handleUpdate}
-              />
-            )
-          })}
-        </div>
-      )}
+      <NotesComp />
     </div>
   )
 }
