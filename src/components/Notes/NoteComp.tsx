@@ -1,12 +1,12 @@
+import { Note } from '@prisma/client'
 import React, { useState } from 'react'
 import { trpc } from '../../utils/trpc'
 import Modal from '../Modal'
 interface Props {
-  id: string
-  title: string
-  body: string
+  note: Note
 }
-const NoteComp: React.FC<Props> = ({ body, id, title }) => {
+const NoteComp: React.FC<Props> = ({ note }) => {
+  const { body, createdAt, id, title, updatedAt, userId } = note
   const utils = trpc.useContext()
   const deleteNote = trpc.note.deleteNote.useMutation({
     // async onMutate(notes)

@@ -29,7 +29,9 @@ const Header = () => {
           <div className="flex items-center">
             <Link href="/" className="-m-1.5 p-1.5">
               <Image
-                src="/images/profileLogo.png"
+                className="rounded-full"
+                src={sessionData?.user?.image || '/images/profileLogo.png'}
+                // src="/images/profileLogo.png"
                 alt="logo"
                 width={50}
                 height={50}
