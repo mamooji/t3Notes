@@ -6,6 +6,7 @@ interface Props {
   note: Note
 }
 const NoteComp: React.FC<Props> = ({ note }) => {
+  const [showModal, setShowModal] = useState(false)
   const { body, createdAt, id, title, updatedAt, userId } = note
   const utils = trpc.useContext()
   const deleteNote = trpc.note.deleteNote.useMutation({
@@ -45,7 +46,12 @@ const NoteComp: React.FC<Props> = ({ note }) => {
     },
   })
   const handleDelete = async (id: string) => {
-    deleteNote.mutate({ id })
+    try {
+      await deleteNote.mutate({ id })
+      setShowModal(false)
+    } catch (e) {
+      console.log(e)
+    }
   }
   const handleUpdate = async (id: string) => {
     updateNote.mutate({
@@ -53,7 +59,7 @@ const NoteComp: React.FC<Props> = ({ note }) => {
       title: 'L',
     })
   }
-  const [showModal, setShowModal] = useState(false)
+
   return (
     <div
       key={id}

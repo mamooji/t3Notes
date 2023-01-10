@@ -39,12 +39,17 @@ const CreateNote: React.FC = () => {
     mode: 'onChange',
     resolver: zodResolver(createNoteSchema),
   })
-  const onSubmit: SubmitHandler<CreateNoteInput> = (values) => {
-    createNote.mutateAsync({
-      title: values.title,
-      body: values.body,
-    })
-    reset()
+  const onSubmit: SubmitHandler<CreateNoteInput> = async (values) => {
+    try {
+      await createNote.mutateAsync({
+        title: values.title,
+        body: values.body,
+      })
+      reset()
+    } catch (e) {
+      console.log(e)
+      console.log(createNote)
+    }
   }
   return (
     <div className=" px-6 lg:px-8">
@@ -69,6 +74,11 @@ const CreateNote: React.FC = () => {
             disabled={isSubmitting}
             {...register('body')}
           />
+          {createNote.error && (
+            <p className=" font-extrabold text-red-400">
+              {createNote.error.message}
+            </p>
+          )}
           <button
             type="submit"
             disabled={isSubmitting}
