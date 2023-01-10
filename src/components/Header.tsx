@@ -69,7 +69,7 @@ const Header = () => {
             href={sessionData ? 'api/auth/signout' : 'api/auth/signin'}
             className={`${
               sessionData ? 'sm:mr-4' : ''
-            } flex-shrink-0 rounded-3xl bg-orange-400 py-2 px-8 text-center text-2xl font-extrabold text-white hover:bg-orange-600 `}
+            } flex-shrink-0 rounded-3xl bg-orange-400 py-2 px-8 text-center text-2xl font-extrabold text-white hover:bg-orange-500 `}
           >
             {sessionData ? 'Sign-out' : 'Sign-in'}
           </Link>

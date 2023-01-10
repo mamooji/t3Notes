@@ -63,7 +63,7 @@ const CreateNote: React.FC = () => {
             {...register('title')}
           />
           {errors.title && (
-            <p className=" font-extrabold text-red-400">
+            <p className=" font-extrabold text-orange-400">
               {errors.title.message}
             </p>
           )}
@@ -75,14 +75,14 @@ const CreateNote: React.FC = () => {
             {...register('body')}
           />
           {createNote.error && (
-            <p className=" font-extrabold text-red-400">
+            <p className=" font-extrabold text-orange-400">
               {createNote.error.message}
             </p>
           )}
           <button
             type="submit"
             disabled={isSubmitting}
-            className="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+            className="rounded-full bg-orange-400 py-2 px-4 font-bold text-white hover:bg-orange-500"
           >
             Create Note
           </button>
