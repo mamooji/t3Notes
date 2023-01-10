@@ -82,7 +82,7 @@ const CreateNote: React.FC = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="rounded-full bg-orange-400 py-2 px-4 font-bold text-white hover:bg-orange-500"
+            className="rounded-full bg-orange-400 py-2 px-4 font-bold text-white duration-500 ease-in-out hover:bg-orange-500"
           >
             Create Note
           </button>

@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
         <div>
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative overflow-hidden rounded-full bg-blue-400 py-1.5 px-4 text-sm leading-6 hover:bg-blue-500">
+            <div className="relative overflow-hidden rounded-full bg-blue-400 py-1.5 px-4 text-sm leading-6 duration-500 ease-in-out hover:bg-blue-500">
               <span className=" font-extrabold">
                 Check out the Repo.{' '}
                 <Link href="#" className="font-extrabold text-indigo-600">
@@ -27,7 +27,7 @@ const Hero = () => {
             <div className="mt-8 flex justify-center gap-x-4">
               <Link
                 href="#"
-                className="inline-block rounded-lg bg-orange-400 px-4 py-1.5 text-base font-extrabold leading-7 text-white hover:bg-orange-500"
+                className="inline-block rounded-lg bg-orange-400 px-4 py-1.5 text-base font-extrabold leading-7 text-white duration-500 ease-in-out hover:bg-orange-500"
               >
                 Create a Note
                 <span className="text-indigo-200" aria-hidden="true">
@@ -36,7 +36,7 @@ const Hero = () => {
               </Link>
               <Link
                 href="#"
-                className="inline-block rounded-lg bg-blue-400 px-4 py-1.5 font-extrabold leading-7 hover:bg-blue-500"
+                className="inline-block rounded-lg bg-blue-400 px-4 py-1.5 font-extrabold leading-7 duration-500 ease-in-out hover:bg-blue-500"
               >
                 My Notes
                 <span className="" aria-hidden="true">

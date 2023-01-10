@@ -69,7 +69,7 @@ const NoteComp: React.FC<Props> = ({ note }) => {
         <div className="flex w-full justify-between gap-2 ">
           <h1 className="text-4xl font-extrabold ">{title}</h1>
           <button
-            className=" h-10 w-10 flex-shrink-0 rounded-full bg-orange-400 pb-1 text-2xl font-extrabold hover:bg-orange-500  "
+            className=" h-10 w-10 flex-shrink-0 rounded-full bg-orange-400 pb-1 text-2xl font-extrabold duration-500 ease-in-out hover:bg-orange-500  "
             onClick={() => setShowModal(!showModal)}
           >
             x
@@ -80,7 +80,7 @@ const NoteComp: React.FC<Props> = ({ note }) => {
           {body}
         </pre>
         <button
-          className="m-auto  rounded-3xl bg-blue-500 py-2 px-8 hover:bg-blue-600 "
+          className="m-auto  rounded-3xl bg-blue-500 py-2 px-8 duration-500 ease-in-out hover:bg-blue-600 "
           onClick={() => handleUpdate(id)}
         >
           Update

@@ -69,7 +69,7 @@ const Modal: React.FC<Props> = ({
                 </div>
                 <button
                   type="button"
-                  className=" h-10 w-10 flex-shrink-0 rounded-full bg-red-400 hover:bg-red-500  "
+                  className=" h-10 w-10 flex-shrink-0 rounded-full bg-red-400 duration-500 ease-in-out hover:bg-red-500 "
                   onClick={() => setShowModal(false)}
                 >
                   x
@@ -78,14 +78,14 @@ const Modal: React.FC<Props> = ({
               <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  className="inline-flex w-full justify-center rounded-full   bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700  sm:ml-3 sm:w-auto sm:text-sm"
+                  className="inline-flex w-full justify-center rounded-full   bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm duration-500 ease-in-out hover:bg-red-700  sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={() => deleteMethod(id)}
                 >
                   Delete
                 </button>
                 <button
                   type="button"
-                  className="mt-3 inline-flex w-full justify-center rounded-full  bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:text-gray-500 sm:mt-0 sm:w-auto sm:text-sm"
+                  className="mt-3 inline-flex w-full justify-center rounded-full  bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm duration-500 ease-in-out hover:text-gray-500 sm:mt-0 sm:w-auto sm:text-sm"
                   onClick={() => setShowModal(false)}
                 >
                   Cancel
