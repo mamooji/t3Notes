@@ -10,13 +10,18 @@ export const noteRouter = router({
   getSecretMessage: protectedProcedure.query(() => {
     return 'you can see this secret message!'
   }),
-  findNotesByUserId: protectedProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.note.findMany({
-      where: {
-        userId: ctx.session.user.id,
-      },
-    })
-  }),
+  findNotesByUserId: protectedProcedure
+    .input(z.object({ text: z.string().nullish() }).nullish())
+    .query(async ({ ctx, input }) => {
+      return await ctx.prisma.note.findMany({
+        where: {
+          userId: ctx.session.user.id,
+          title: {
+            contains: input?.text ? input.text : undefined,
+          },
+        },
+      })
+    }),
   updateNoteById: protectedProcedure
     .input(
       z
