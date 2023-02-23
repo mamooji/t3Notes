@@ -33,9 +33,9 @@ export const noteRouter = router({
         .nullish()
     )
     .mutation(async ({ ctx, input }) => {
-      let title = input?.title
-      let body = input?.body
-      let noteId = input?.noteId
+      const title = input?.title
+      const body = input?.body
+      const noteId = input?.noteId
 
       if (!noteId || !title) {
         throw new TRPCError({
@@ -43,7 +43,7 @@ export const noteRouter = router({
           message: 'Could not find noteId or tile from input',
         })
       }
-      const note = await ctx.prisma.note.update({
+      return await ctx.prisma.note.update({
         where: {
           id: noteId,
         },
@@ -52,7 +52,6 @@ export const noteRouter = router({
           body: body ? body : undefined,
         },
       })
-      return note
     }),
   deleteNote: protectedProcedure
     .input(z.object({ id: z.string() }))
@@ -67,8 +66,8 @@ export const noteRouter = router({
   saveNote: protectedProcedure
     .input(createNoteSchema)
     .mutation(({ ctx, input }) => {
-      let { title: noteTitle, body: noteBody } = input
-      let id: string | undefined = ctx.session.user.id
+      const { title: noteTitle, body: noteBody } = input
+      const id: string | undefined = ctx.session.user.id
 
       if (!id || !noteTitle) {
         throw new TRPCError({

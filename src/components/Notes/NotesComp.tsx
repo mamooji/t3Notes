@@ -9,8 +9,6 @@ const getNotes = (search: string) => {
 const NotesComp: React.FC = () => {
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebounce(search, 500)
-  // const notes = trpc.note.findNotesByUserId.useQuery({ text: search })
-  // const notes = trpc.note.findNotesByUserId.useQuery()
   const notes = getNotes(debouncedSearch)
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
@@ -25,15 +23,17 @@ const NotesComp: React.FC = () => {
           value={search}
           onChange={handleSearch}
           placeholder="search"
-          className=" rounded-full bg-blue-300 p-2 outline-none placeholder:text-white"
+          className=" overflow-hidden rounded-full bg-blue-300 p-2 outline-none placeholder:pl-2 placeholder:text-white"
         />
       </div>
       <div className="my-4 grid grid-cols-1 gap-4 rounded-3xl bg-blue-200 p-4  sm:grid-cols-2 lg:grid-cols-3">
-        {notes.data
-          ? notes.data.map((note: Note) => {
-              return <NoteComp key={note.id} note={note} />
-            })
-          : null}
+        {notes.data ? (
+          notes.data.map((note: Note) => {
+            return <NoteComp key={note.id} note={note} />
+          })
+        ) : notes.isLoading ? (
+          <p className="font-extrabold text-white">Loading</p>
+        ) : null}
       </div>
     </>
   )
