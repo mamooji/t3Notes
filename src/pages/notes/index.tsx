@@ -1,6 +1,6 @@
 import React from 'react'
-import CreateNote from '../components/CreateNote'
-import Layout from '../components/Layout'
+import CreateNote from '../../components/Notes/CreateNote'
+import Layout from '../../components/Layout'
 
 const notes = () => {
   return (

@@ -9,4 +9,10 @@ export const createNoteOutputSchema = z.object({
   body: z.string().optional(),
 })
 
+export const updateNoteSchema = z.object({
+  id: z.string(),
+  title: z.string().min(1, { message: 'Title missing' }),
+  body: z.string().optional(),
+})
 export type CreateNoteInput = z.TypeOf<typeof createNoteSchema>
+export type UpdateNoteInput = z.TypeOf<typeof updateNoteSchema>

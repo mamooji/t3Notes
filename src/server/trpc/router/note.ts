@@ -10,6 +10,15 @@ export const noteRouter = router({
   getSecretMessage: protectedProcedure.query(() => {
     return 'you can see this secret message!'
   }),
+  findNoteById: protectedProcedure
+    .input(z.object({ noteId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      return await ctx.prisma.note.findUniqueOrThrow({
+        where: {
+          id: input.noteId,
+        },
+      })
+    }),
   findNotesByUserId: protectedProcedure
     .input(z.object({ text: z.string().nullish() }).nullish())
     .query(async ({ ctx, input }) => {

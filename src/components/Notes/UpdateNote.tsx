@@ -1,56 +1,30 @@
 import React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { CreateNoteInput, createNoteSchema } from '../schema/note.schema'
-import { trpc } from '../utils/trpc'
-import NotesComp from './Notes/NotesComp'
+import { useForm } from 'react-hook-form'
+import { UpdateNoteInput, updateNoteSchema } from '../../schema/note.schema'
+import { NextPage } from 'next'
 
-const CreateNote: React.FC = () => {
-  const utils = trpc.useContext()
-  const createNote = trpc.note.saveNote.useMutation({
-    // async onMutate(notes)
-    onMutate: async () => {
-      // Cancel outgoing fetches (so they don't overwrite our optimistic update)
-      await utils.note.findNotesByUserId.cancel()
-      // Get the data from the queryCache
-      const prevData = utils.note.findNotesByUserId.getData()
-
-      // Optimistically update the data with our new post
-      if (prevData) {
-        utils.note.findNotesByUserId.setData(prevData)
-      }
-    },
-    onSettled() {
-      // Sync with server once mutation has settled
-      utils.note.findNotesByUserId.invalidate()
-    },
-  })
-
+interface Props {
+  id: string
+  title: string
+  body?: string
+  onSubmit: (params: UpdateNoteInput) => any
+}
+const UpdateNote: NextPage<Props> = ({ id, title, body, onSubmit }) => {
   const {
     handleSubmit,
     register,
-    reset,
     formState: { errors, isSubmitting },
-  } = useForm<CreateNoteInput>({
+  } = useForm<UpdateNoteInput>({
     defaultValues: {
-      title: '',
-      body: '',
+      id: id,
+      title: title,
+      body: body,
     },
     mode: 'onChange',
-    resolver: zodResolver(createNoteSchema),
+    resolver: zodResolver(updateNoteSchema),
   })
-  const onSubmit: SubmitHandler<CreateNoteInput> = async (values) => {
-    try {
-      await createNote.mutateAsync({
-        title: values.title,
-        body: values.body,
-      })
-      reset()
-    } catch (e) {
-      console.log(e)
-      console.log(createNote)
-    }
-  }
+
   return (
     <div className=" px-6 lg:px-8">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -74,23 +48,22 @@ const CreateNote: React.FC = () => {
             disabled={isSubmitting}
             {...register('body')}
           />
-          {createNote.error && (
+          {/* {updateNote.error && (
             <p className=" font-extrabold text-orange-400">
-              {createNote.error.message}
+              {updateNote.error.message}
             </p>
-          )}
+          )} */}
           <button
             type="submit"
             disabled={isSubmitting}
             className="rounded-full bg-orange-400 py-2 px-4 font-bold text-white duration-500 ease-in-out hover:bg-orange-500"
           >
-            Create Note
+            Update Note
           </button>
         </div>
       </form>
-      <NotesComp />
     </div>
   )
 }
 
-export default CreateNote
+export default UpdateNote
