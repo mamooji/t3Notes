@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { trpc } from '../../utils/trpc'
 import { useRouter } from 'next/router'
 import Modal from '../Modal'
+import { toast } from 'react-toastify'
 interface Props {
   note: Note
 }
@@ -38,6 +39,7 @@ const NoteComp: React.FC<Props> = ({ note }) => {
     try {
       await deleteNote.mutate({ id })
       setShowModal(false)
+      toast.success('Note Deleted')
     } catch (e) {
       console.log(e)
     }

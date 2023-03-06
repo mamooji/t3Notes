@@ -2,7 +2,6 @@ import React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { UpdateNoteInput, updateNoteSchema } from '../../schema/note.schema'
-import { NextPage } from 'next'
 
 interface Props {
   id: string
@@ -10,7 +9,7 @@ interface Props {
   body?: string
   onSubmit: (params: UpdateNoteInput) => any
 }
-const UpdateNote: NextPage<Props> = ({ id, title, body, onSubmit }) => {
+const UpdateNote: React.FC<Props> = ({ id, title, body, onSubmit }) => {
   const {
     handleSubmit,
     register,
@@ -41,6 +40,7 @@ const UpdateNote: NextPage<Props> = ({ id, title, body, onSubmit }) => {
               {errors.title.message}
             </p>
           )}
+          <br className="bg-black" />
 
           <textarea
             className=" h-60 w-full bg-blue-400 text-4xl font-extrabold text-white placeholder-white outline-none placeholder:text-4xl placeholder:font-extrabold"
@@ -48,11 +48,6 @@ const UpdateNote: NextPage<Props> = ({ id, title, body, onSubmit }) => {
             disabled={isSubmitting}
             {...register('body')}
           />
-          {/* {updateNote.error && (
-            <p className=" font-extrabold text-orange-400">
-              {updateNote.error.message}
-            </p>
-          )} */}
           <button
             type="submit"
             disabled={isSubmitting}

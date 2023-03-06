@@ -11,7 +11,7 @@ interface TNavigationElementT {
 const navigation: Array<TNavigationElementT> = [
   { name: 'Notes', href: '/notes' },
 ]
-const Header = () => {
+const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { data: sessionData } = useSession()
   return (
@@ -31,7 +31,6 @@ const Header = () => {
               <Image
                 className="rounded-full"
                 src={sessionData?.user?.image || '/images/profileLogo.png'}
-                // src="/images/profileLogo.png"
                 alt="logo"
                 width={50}
                 height={50}

@@ -46,16 +46,7 @@ const CreateNote: React.FC = () => {
         title: values.title,
         body: values.body,
       })
-      toast.success('Note Created', {
-        position: 'top-right',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      })
+      toast.success('Note Created')
       reset()
     } catch (e) {
       console.log(e)

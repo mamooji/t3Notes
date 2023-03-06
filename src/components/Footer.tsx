@@ -1,4 +1,4 @@
-import { SVGProps } from 'react'
+import React, { SVGProps } from 'react'
 
 /* This example requires Tailwind CSS v2.0+ */
 const navigation = [
@@ -17,7 +17,7 @@ const navigation = [
   },
 ]
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className=" bottom-0 mx-auto w-full max-w-7xl px-6 pb-4 text-white lg:px-8">
       <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full bg-blue-200 p-4 lg:px-8">

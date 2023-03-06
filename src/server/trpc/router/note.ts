@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client'
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { createNoteSchema } from '../../../schema/note.schema'
@@ -20,13 +21,17 @@ export const noteRouter = router({
       })
     }),
   findNotesByUserId: protectedProcedure
-    .input(z.object({ text: z.string().nullish() }).nullish())
+    .input(z.object({ searchString: z.string().nullish(), filter: z.string() }))
     .query(async ({ ctx, input }) => {
+      const filter = input.filter
       return await ctx.prisma.note.findMany({
+        orderBy: {
+          createdAt: filter,
+        } as any,
         where: {
           userId: ctx.session.user.id,
           title: {
-            contains: input?.text ? input.text : undefined,
+            contains: input?.searchString ? input.searchString : undefined,
           },
         },
       })
