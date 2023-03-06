@@ -4,7 +4,7 @@ import React, { SVGProps } from 'react'
 const navigation = [
   {
     name: 'GitHub',
-    href: '#',
+    href: 'https://github.com/mamooji',
     icon: (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
       <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
         <path

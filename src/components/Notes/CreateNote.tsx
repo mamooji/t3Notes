@@ -69,9 +69,9 @@ const CreateNote: React.FC = () => {
               {errors.title.message}
             </p>
           )}
-
+          <hr className=" my-2 h-1 rounded-lg border-none bg-white opacity-40" />
           <textarea
-            className=" h-60 w-full bg-blue-400 text-4xl font-extrabold text-white placeholder-white outline-none placeholder:text-4xl placeholder:font-extrabold"
+            className=" h-60 w-full bg-blue-400 text-3xl font-extrabold text-white placeholder-white outline-none placeholder:text-3xl placeholder:font-extrabold"
             placeholder="Note Body"
             disabled={isSubmitting}
             {...register('body')}

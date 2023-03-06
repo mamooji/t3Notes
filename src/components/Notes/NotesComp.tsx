@@ -23,7 +23,7 @@ const NotesComp: React.FC = () => {
         Filter
         <select
           name="sort"
-          className=" text-black"
+          className=" rounded-full border-none bg-blue-300 p-2 capitalize text-white focus:border-none focus:outline-none "
           onChange={(e) => {
             setFilter(e.target.value)
           }}

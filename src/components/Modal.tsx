@@ -67,13 +67,6 @@ const Modal: React.FC<Props> = ({
                     able to get this note back.
                   </p>
                 </div>
-                <button
-                  type="button"
-                  className=" h-10 w-10 flex-shrink-0 rounded-full bg-red-400 duration-500 ease-in-out hover:bg-red-500 "
-                  onClick={() => setShowModal(false)}
-                >
-                  x
-                </button>
               </div>
               <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                 <button

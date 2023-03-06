@@ -4,6 +4,9 @@ import { trpc } from '../../utils/trpc'
 import { useRouter } from 'next/router'
 import Modal from '../Modal'
 import { toast } from 'react-toastify'
+import DeleteIcon from '../Icons/deleteIcon'
+import EditIcon from '../Icons/EditIcon'
+import CopyIcon from '../Icons/CopyIcon'
 interface Props {
   note: Note
 }
@@ -47,28 +50,31 @@ const NoteComp: React.FC<Props> = ({ note }) => {
   return (
     <div
       key={id}
-      className="mx-auto flex h-80 max-h-56 w-full  transform flex-col justify-between rounded-3xl  bg-blue-400 text-white duration-500 ease-in-out hover:scale-105"
+      className="mx-auto flex h-80 max-h-56 w-full transform flex-col justify-between rounded-3xl  bg-blue-400 text-white duration-500 ease-in-out hover:scale-105"
     >
       <div className="flex h-full flex-col p-4">
-        <div className="flex w-full justify-between gap-2 ">
+        <div className="flex w-full items-start justify-between gap-2 ">
           <h1 className="text-4xl font-extrabold ">{title}</h1>
-          <button
-            className=" h-10 w-10 flex-shrink-0 rounded-full bg-orange-400 pb-1 text-2xl font-extrabold duration-500 ease-in-out hover:bg-orange-500  "
-            onClick={() => setShowModal(!showModal)}
-          >
-            x
+          <button onClick={() => setShowModal(!showModal)}>
+            <DeleteIcon />
           </button>
         </div>
 
         <pre className=" w-full flex-auto overflow-hidden  break-words  ">
           {body}
         </pre>
-        <button
-          className="m-auto  rounded-3xl bg-blue-500 py-2 px-8 duration-500 ease-in-out hover:bg-blue-600 "
-          onClick={handleClick}
-        >
-          Update
-        </button>
+        <div className="flex w-full justify-between">
+          <button onClick={handleClick}>
+            <EditIcon />
+          </button>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(body)
+            }}
+          >
+            <CopyIcon />
+          </button>
+        </div>
         <Modal
           id={id}
           deleteMethod={handleDelete}
