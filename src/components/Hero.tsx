@@ -10,7 +10,10 @@ const Hero: React.FC = () => {
             <div className="relative overflow-hidden rounded-full bg-blue-400 py-1.5 px-4 text-sm leading-6 duration-500 ease-in-out hover:bg-blue-500">
               <span className=" font-extrabold">
                 Check out the Repo.{' '}
-                <Link href="#" className="font-extrabold text-indigo-600">
+                <Link
+                  href="https://github.com/mamooji/t3Notes"
+                  className="font-extrabold text-indigo-600"
+                >
                   <span className="absolute inset-0" aria-hidden="true" />
                   Here <span aria-hidden="true">&rarr;</span>
                 </Link>
@@ -19,7 +22,11 @@ const Hero: React.FC = () => {
           </div>
           <div>
             <h1 className="text-center  text-6xl font-extrabold ">
-              T3 Notes App
+              T3{' '}
+              <div className="inline-block -skew-y-6 transform bg-orange-400 p-2">
+                <p className=" skew-y-6 transform">Notes</p>
+              </div>{' '}
+              App
             </h1>
             <p className="text-extrabold mt-6 text-center text-lg leading-8 ">
               Created using the T3 stack, enjoy!

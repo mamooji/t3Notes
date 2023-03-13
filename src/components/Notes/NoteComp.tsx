@@ -4,7 +4,7 @@ import { trpc } from '../../utils/trpc'
 import { useRouter } from 'next/router'
 import Modal from '../Modal'
 import { toast } from 'react-toastify'
-import DeleteIcon from '../Icons/deleteIcon'
+import DeleteIcon from '../Icons/DeleteIcon'
 import EditIcon from '../Icons/EditIcon'
 import CopyIcon from '../Icons/CopyIcon'
 interface Props {
@@ -63,13 +63,23 @@ const NoteComp: React.FC<Props> = ({ note }) => {
         <pre className=" w-full flex-auto overflow-hidden  break-words  ">
           {body}
         </pre>
-        <div className="flex w-full justify-between">
+        <div className="flex w-full items-center justify-between pt-1">
           <button onClick={handleClick}>
             <EditIcon />
           </button>
+          <p className="text-sm font-extrabold ">
+            {createdAt.toLocaleDateString('en-US')}
+          </p>
           <button
             onClick={() => {
-              navigator.clipboard.writeText(body)
+              navigator.clipboard
+                .writeText(title + '\n' + body)
+                .then(() => {
+                  toast.success('Note Copied')
+                })
+                .catch(() => {
+                  toast.error('Unable to Copy to clipboard')
+                })
             }}
           >
             <CopyIcon />
