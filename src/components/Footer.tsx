@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
         </div>
         <div className="flex justify-center space-x-6">
           {navigation.map((item) => (
-            <a key={item.name} href={item.href} className="">
+            <a key={item.name} href={item.href} className="" target="_blank">
               <span className="sr-only">{item.name}</span>
               <item.icon
                 className="h-12 w-12 duration-500 ease-in-out hover:fill-orange-500 "

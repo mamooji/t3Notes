@@ -13,6 +13,7 @@ const Hero: React.FC = () => {
                 <Link
                   href="https://github.com/mamooji/t3Notes"
                   className="font-extrabold text-indigo-600"
+                  target="_blank"
                 >
                   <span className="absolute inset-0" aria-hidden="true" />
                   Here <span aria-hidden="true">&rarr;</span>
@@ -33,7 +34,7 @@ const Hero: React.FC = () => {
             </p>
             <div className="mt-8 flex justify-center gap-x-4">
               <Link
-                href="#"
+                href="/notes"
                 className="inline-block rounded-lg bg-orange-400 px-4 py-1.5 text-base font-extrabold leading-7 text-white duration-500 ease-in-out hover:bg-orange-500"
               >
                 Create a Note
@@ -42,7 +43,7 @@ const Hero: React.FC = () => {
                 </span>
               </Link>
               <Link
-                href="#"
+                href="/notes"
                 className="inline-block rounded-lg bg-blue-400 px-4 py-1.5 font-extrabold leading-7 duration-500 ease-in-out hover:bg-blue-500"
               >
                 My Notes
