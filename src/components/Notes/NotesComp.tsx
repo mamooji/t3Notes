@@ -28,8 +28,10 @@ const NotesComp: React.FC = () => {
             setFilter(e.target.value)
           }}
         >
-          {filterOptions.map((option) => (
-            <option value={option}>{option}</option>
+          {filterOptions.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
           ))}
         </select>
         <input
