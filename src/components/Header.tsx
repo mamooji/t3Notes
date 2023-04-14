@@ -30,7 +30,7 @@ const Header: React.FC = () => {
             <Link href="/" className="-m-1.5 p-1.5">
               <Image
                 className="rounded-full"
-                src={sessionData?.user?.image || '/images/profileLogo.PNG'}
+                src={sessionData?.user?.image || '/images/profileLOGO.png'}
                 alt="logo"
                 width={50}
                 height={50}
