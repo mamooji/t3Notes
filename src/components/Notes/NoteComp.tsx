@@ -1,4 +1,4 @@
-import { Note } from '@prisma/client'
+import { type Note } from '@prisma/client'
 import React, { useState } from 'react'
 import { trpc } from '../../utils/trpc'
 import { useRouter } from 'next/router'
@@ -12,7 +12,7 @@ interface Props {
 }
 const NoteComp: React.FC<Props> = ({ note }) => {
   const [showModal, setShowModal] = useState(false)
-  const { body, createdAt, id, title, updatedAt, userId } = note
+  const { body, createdAt, id, title } = note
   const utils = trpc.useContext()
   const router = useRouter()
   const deleteNote = trpc.note.deleteNote.useMutation({

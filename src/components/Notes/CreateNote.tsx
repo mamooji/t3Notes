@@ -1,7 +1,10 @@
 import React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { CreateNoteInput, createNoteSchema } from '../../schema/note.schema'
+import { useForm, type SubmitHandler } from 'react-hook-form'
+import {
+  type CreateNoteInput,
+  createNoteSchema,
+} from '../../schema/note.schema'
 import { trpc } from '../../utils/trpc'
 import NotesComp from './NotesComp'
 import { toast } from 'react-toastify'

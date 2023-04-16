@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NoteComp from './NoteComp'
 import { trpc } from '../../utils/trpc'
-import { Note } from '@prisma/client'
+import { type Note } from '@prisma/client'
 import useDebounce from '../../utils/useDebounce'
 import NoteCompSkeleton from './NoteCompSkeleton'
 const getNotes = (search: string, filter: string) => {

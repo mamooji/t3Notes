@@ -1,13 +1,16 @@
 import React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { UpdateNoteInput, updateNoteSchema } from '../../schema/note.schema'
+import {
+  type UpdateNoteInput,
+  updateNoteSchema,
+} from '../../schema/note.schema'
 
 interface Props {
   id: string
   title: string
   body?: string
-  onSubmit: (params: UpdateNoteInput) => any
+  onSubmit: (params: UpdateNoteInput) => void
 }
 const UpdateNote: React.FC<Props> = ({ id, title, body, onSubmit }) => {
   const {

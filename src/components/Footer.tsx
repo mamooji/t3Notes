@@ -1,4 +1,5 @@
-import React, { SVGProps } from 'react'
+import React from 'react'
+import type { SVGProps } from 'react'
 
 /* This example requires Tailwind CSS v2.0+ */
 const navigation = [

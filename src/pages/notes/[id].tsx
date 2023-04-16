@@ -3,11 +3,11 @@ import React, { useEffect } from 'react'
 import Layout from '../../components/Layout'
 import UpdateNote from '../../components/Notes/UpdateNote'
 import { trpc } from '../../utils/trpc'
-import { SubmitHandler } from 'react-hook-form'
-import { UpdateNoteInput } from '../../schema/note.schema'
+import { type SubmitHandler } from 'react-hook-form'
+import { type UpdateNoteInput } from '../../schema/note.schema'
 import { toast } from 'react-toastify'
 import UpdateNoteSkeleton from '../../components/Notes/UpdateNoteSkeleton'
-import { NextPage } from 'next'
+import { type NextPage } from 'next'
 
 const NoteDetail: NextPage = () => {
   const utils = trpc.useContext()
