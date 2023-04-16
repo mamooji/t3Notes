@@ -2,7 +2,6 @@ import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { createNoteSchema } from '../../../schema/note.schema'
 import { router, publicProcedure, protectedProcedure } from '../trpc'
-import { Prisma } from '@prisma/client'
 
 export const noteRouter = router({
   getSession: publicProcedure.query(({ ctx }) => {
