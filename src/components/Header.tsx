@@ -34,7 +34,7 @@ const Header: React.FC = () => {
                 alt="logo"
                 width={50}
                 height={50}
-              ></Image>
+              />
             </Link>
           </div>
           <div className="mr-4 sm:hidden ">
