@@ -14,7 +14,9 @@ const config = {
     defaultLocale: 'en',
   },
   images: {
-    domains: ['cdn.discordapp.com'],
+    loader: 'custom',
+    loaderFile: './src/utils/imageLoader.ts',
+    domains: ['discordapp.com', 'cdn.discordapp.com'],
   },
 }
 export default config

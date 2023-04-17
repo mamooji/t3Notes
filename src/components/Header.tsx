@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
+import myLoader from '../utils/imageLoader'
 
 interface TNavigationElementT {
   name: string
@@ -11,9 +12,6 @@ interface TNavigationElementT {
 const navigation: Array<TNavigationElementT> = [
   { name: 'Notes', href: '/notes' },
 ]
-const imageLoader = (src: string | null | undefined) => {
-  return src ?? '/images/profileLOGO.png'
-}
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { data: sessionData } = useSession()
@@ -32,11 +30,13 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <Link href="/" className="-m-1.5 p-1.5">
               <Image
-                className="rounded-full"
-                src={imageLoader(sessionData?.user?.image)}
+                className="fill rounded-full"
+                src={sessionData?.user?.image || '/images/profileLOGO.png'}
                 alt="logo"
                 width={50}
                 height={50}
+                loader={myLoader}
+                unoptimized
               />
             </Link>
           </div>
