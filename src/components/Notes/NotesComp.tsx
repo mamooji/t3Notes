@@ -19,11 +19,10 @@ const NotesComp: React.FC = () => {
   const loadingNotes = [0, 1, 2, 3, 4]
   return (
     <>
-      <div className="mt-4 flex items-center justify-between rounded-full bg-blue-600 p-4 text-center text-3xl font-extrabold text-white">
-        Filter
+      <div className="mt-4 flex flex-col items-center justify-between space-y-4 rounded-3xl bg-blue-600 p-4 text-center text-3xl font-extrabold text-white sm:flex-row sm:space-x-4 sm:space-y-0 sm:rounded-full">
         <select
           name="sort"
-          className=" rounded-full border-none bg-blue-300 p-2 capitalize text-white focus:border-none focus:outline-none "
+          className="w-full rounded-full border-none bg-blue-300 p-2 capitalize text-white focus:border-none focus:outline-none sm:w-1/3 "
           onChange={(e) => {
             setFilter(e.target.value)
           }}
@@ -40,7 +39,7 @@ const NotesComp: React.FC = () => {
           value={search}
           onChange={handleSearch}
           placeholder="search"
-          className=" overflow-hidden rounded-full bg-blue-300 p-2 outline-none placeholder:pl-2 placeholder:text-white"
+          className=" w-full  overflow-hidden rounded-full bg-blue-300 p-2 outline-none placeholder:pl-2 placeholder:text-white"
         />
       </div>
       <div className="my-4 grid grid-cols-1 gap-4 rounded-3xl bg-blue-200 p-4  sm:grid-cols-2 lg:grid-cols-3">
